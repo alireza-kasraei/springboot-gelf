@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %p %C{1.} [%t] %m%n" />
+		</Console>
+		<File name="LogFile" fileName="./target/tmp/logs/comments.log">
+			<PatternLayout>
+				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="JsonLogFile"
+			fileName="./target/tmp/logs/json/comments.json">
+			<JsonLayout complete="false" compact="true"
+				eventEol="true">
+				<KeyValuePair key="applicationName" value="comments" />
+			</JsonLayout>
+		</File>
+
+
+	</Appenders>
+
+	<Loggers>
+		<!-- LOG everything at INFO level -->
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="LogFile" />
+			<AppenderRef ref="JsonLogFile" />
+		</Root>
+
+		<!-- LOG "com.baeldung*" at TRACE level -->
+		<Logger name="net.devk" level="debug"></Logger>
+	</Loggers>
+
+</Configuration>
